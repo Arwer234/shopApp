@@ -15,6 +15,10 @@ function App() {
         <Filters/>
         <ShopItems/>
       </main>
+      <footer className={classes[`footer`]}>
+        <p>© 2022 Jakub Filipowski</p>
+        <p>Test data</p>
+      </footer>
     </Fragment>
   );
 }

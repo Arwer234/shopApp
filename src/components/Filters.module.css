@@ -2,7 +2,8 @@
     flex-grow: 1;
     height:100%;
     max-width:256px;
-    margin:3rem;
+    margin:2rem;
+    background-color: darkgrey;
 
     display:flex;
     flex-direction: column;
@@ -10,5 +11,25 @@
     background-color: white;
 }
 .filters h2{
-    background-color: darkgrey;
+   
 }
+.filters-input{
+    border:1px solid #61828A;
+    border-radius: 10px;
+    padding:0.5rem;
+}
+.filters-filtergroup{
+    display:flex;
+    flex-direction: row;
+    padding:0.7rem;
+    align-items: center;
+    justify-content: space-between;
+}
+.filters-filtergroup:nth-child(0){
+    flex-grow: 1;
+}
+.filters-filtergroup:nth-child(1){
+    flex-grow:5;
+}
+.filters-filter-input{}
+.filters-input-invalid{}

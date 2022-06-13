@@ -2,9 +2,11 @@
     flex-grow:5;
     height:100%;
 
-    margin:3rem;
+    margin:2rem;
     background-color: white;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 .shopItems h2{
-    background-color: darkgrey;
 }

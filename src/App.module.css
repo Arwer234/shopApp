@@ -1,7 +1,13 @@
 .main{
     display:flex;
     flex-direction: row;
-    height:40vh;
-
     background-color: #DFE9EB;
+}
+.footer{
+    background-color: #61828A;
+    display:flex;
+    padding:2rem;
+    flex-direction: row;
+    justify-content: space-between;
+    color:white;
 }

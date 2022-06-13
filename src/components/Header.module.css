@@ -6,13 +6,13 @@
 }
 .header{
     width:100%;
-    height:20vh;
     display:flex;
     flex-direction: row;
     justify-content: space-around;
     background-color: #61828A;
     color:white;
     align-items: center;
+    padding: 2rem;
 }
 .title{
     font-size:3rem;
