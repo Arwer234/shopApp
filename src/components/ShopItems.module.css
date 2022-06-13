@@ -1,0 +1,10 @@
+.shopItems{
+    flex-grow:5;
+    height:100%;
+
+    margin:3rem;
+    background-color: white;
+}
+.shopItems h2{
+    background-color: darkgrey;
+}

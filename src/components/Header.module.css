@@ -1,0 +1,19 @@
+
+.logo{
+    width:128px;
+    height:128px;
+    color:white;
+}
+.header{
+    width:100%;
+    height:20vh;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #61828A;
+    color:white;
+    align-items: center;
+}
+.title{
+    font-size:3rem;
+}

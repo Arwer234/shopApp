@@ -1,0 +1,12 @@
+.navbar{
+    background-color: #A9CCCF;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    color:white;
+}
+.home{
+    width:32px;
+    height:32px;
+}

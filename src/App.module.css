@@ -1,0 +1,7 @@
+.main{
+    display:flex;
+    flex-direction: row;
+    height:40vh;
+
+    background-color: #DFE9EB;
+}

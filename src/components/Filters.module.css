@@ -1,0 +1,14 @@
+.filters{
+    flex-grow: 1;
+    height:100%;
+    max-width:256px;
+    margin:3rem;
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+.filters h2{
+    background-color: darkgrey;
+}
