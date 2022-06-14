@@ -35,9 +35,7 @@ const Filters = (props: Props) => {
 
   return (
     <div className = {classes.filters}>
-        <h2>Filtry</h2>
-
-        
+        <h2>Filters</h2>
         <div className={classes[`filters-list`]}>
           <div className={classes[`filters-filtergroup`]}>
             <label htmlFor='productNameFilter'>Filter</label>

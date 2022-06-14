@@ -8,10 +8,10 @@ import ShopItems from './components/ShopItems';
 
 function App() {
   return (
-    <Fragment>
+    <div className={classes[`main`]}>
       <Header/>
       <Navbar/>
-      <main className={classes.main}>
+      <main className={classes[`shop-content`]}>
         <Filters/>
         <ShopItems/>
       </main>
@@ -19,7 +19,7 @@ function App() {
         <p>© 2022 Jakub Filipowski</p>
         <p>Test data</p>
       </footer>
-    </Fragment>
+    </div>
   );
 }
 

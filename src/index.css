@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  height:100%;
   font-family: 'lato';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -7,4 +8,10 @@ body {
 
 html{
   font-size:16px;
+  height:100%;
+  margin:0;
+  position:relative;
+}
+#root{
+  height:100%;
 }
