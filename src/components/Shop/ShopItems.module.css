@@ -9,3 +9,9 @@
 }
 .shopItems h2{
 }
+.shop-items-list{
+    display:flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: space-around;
+}

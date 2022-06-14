@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from "./Navbar.module.css"
-import home from '../imgs/home-2-32.png'
+import home from '../../imgs/home-2-32.png'
 
 type Props = {}
 

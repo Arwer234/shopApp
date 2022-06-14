@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../imgs/building-128.png'
+import logo from '../../imgs/building-128.png'
 import classes from "./Header.module.css"
 
 type Props = {}

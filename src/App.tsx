@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import classes from './App.module.css';
 
-import Header from './components/Header'
-import Navbar from './components/Navbar';
-import Filters from './components/Filters';
-import ShopItems from './components/ShopItems';
+import Header from './components/Layout/Header'
+import Navbar from './components/Layout/Navbar';
+import Filters from './components/Layout/Filters';
+import ShopItems from './components/Shop/ShopItems';
 
 function App() {
   return (
