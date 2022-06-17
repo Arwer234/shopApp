@@ -1,4 +1,4 @@
-.shopItems{
+.shop-items{
     flex-grow:5;
 
     margin:2rem;
@@ -7,7 +7,8 @@
     flex-direction: column;
     align-items: center;
 }
-.shopItems h2{
+.shop-items h2{
+    text-align:center;
 }
 .shop-items-list{
     display:flex;

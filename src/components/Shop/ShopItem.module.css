@@ -12,4 +12,17 @@
     -webkit-box-shadow: 0px 0px 7px -4px rgba(66, 68, 90, 1);
     -moz-box-shadow: 0px 0px 7px -4px rgba(66, 68, 90, 1);
     box-shadow: 0px 0px 7px -4px rgba(66, 68, 90, 1);
+    cursor:pointer;
+}
+.shop-item-description{
+    text-align: center;
+}
+.shop-item-button{
+    background-color: #61828A;
+    border-radius: 10px;
+    padding:1rem;
+    color:white;
+    font-weight:bold;
+    border:none;
+    letter-spacing:0.2rem;
 }
