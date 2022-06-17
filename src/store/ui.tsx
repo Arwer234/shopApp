@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    isOverlayShown:false
+    isModalShown:false,
+    selectedItem:0
 }
 
 const uiSlice = createSlice({
@@ -9,7 +10,10 @@ const uiSlice = createSlice({
     initialState,
     reducers:{
         changeOverlayShown(state){
-            state.isOverlayShown = !state.isOverlayShown
+            state.isModalShown = !state.isModalShown
+        },
+        setSelectedItem(state,actions){
+            state.selectedItem = actions.payload
         }
     }
 })
