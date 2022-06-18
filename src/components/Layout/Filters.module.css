@@ -8,6 +8,8 @@
     flex-direction: column;
     align-items: center;
     background-color: white;
+
+    height:100%;
 }
 .filters h2{
    
@@ -15,20 +17,40 @@
 .filters-input{
     border:1px solid #61828A;
     border-radius: 10px;
-    padding:0.5rem;
+    padding:0.75rem;
+    width:7rem;
+    margin:1rem;
 }
 .filters-filtergroup{
     display:flex;
     flex-direction: row;
     padding:0.7rem;
     align-items: center;
-    justify-content: space-between;
+    justify-content:space-between;
+    width:90%;
 }
 .filters-filtergroup:nth-child(0){
     flex-grow: 1;
 }
 .filters-filtergroup:nth-child(1){
     flex-grow:5;
+}
+.filters-list{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+.filters-filtergroup label{
+    margin:1rem;
+}
+.big-button{
+    background-color: #61828A;
+    border-radius: 20px;
+    padding:1rem;
+    color:white;
+    border:none;
+    margin:1rem;
+    letter-spacing: 0.1rem;
 }
 .filters-filter-input{}
 .filters-input-invalid{}

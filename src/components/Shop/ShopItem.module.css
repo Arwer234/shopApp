@@ -17,12 +17,3 @@
 .shop-item-description{
     text-align: center;
 }
-.shop-item-button{
-    background-color: #61828A;
-    border-radius: 10px;
-    padding:1rem;
-    color:white;
-    font-weight:bold;
-    border:none;
-    letter-spacing:0.2rem;
-}

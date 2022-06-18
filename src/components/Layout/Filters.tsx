@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
 import useInput from '../../hooks/useInput'
 import classes from './Filters.module.css'
+import {useDispatch} from 'react-redux'
 
+import {dataActions} from '../../store/index'
 
 type Props = {}
 
@@ -9,6 +10,8 @@ const nameValidation = (input:string) => input.trim() !== ""
 const numberValidation = (input:string) => parseInt(input) >= 0
 
 const Filters = (props: Props) => {
+  const dispatch = useDispatch()
+
   const {
     value:nameValue,
     valueChangeHandler:changeNameHandler,
@@ -31,14 +34,21 @@ const Filters = (props: Props) => {
     valueIsValid:priceToIsValid
   } = useInput(numberValidation)
 
-  const [rangeValue,setRangeValue] = useState(0)
-
+  const handleClick = () =>{
+    console.log(priceFromValue)
+    const filterState = {
+      name:nameValue,
+      priceFrom:typeof(priceFromValue) === "string"?parseInt(priceFromValue):0,
+      priceTo:typeof(priceToValue) === "string"?parseInt(priceToValue):999
+    }
+    dispatch(dataActions.setFilters(filterState))
+  }
   return (
     <div className = {classes.filters}>
         <h2>Filters</h2>
         <div className={classes[`filters-list`]}>
           <div className={classes[`filters-filtergroup`]}>
-            <label htmlFor='productNameFilter'>Filter</label>
+            <label htmlFor='productNameFilter'>Name: </label>
             <input
               className={classes[`filters-input`]}
               type = "text" 
@@ -50,13 +60,14 @@ const Filters = (props: Props) => {
               placeholder='Type ...'
             />
           </div>
+          <h3>Price</h3>
           <div className={classes[`filters-filtergroup`]}>
-            <label htmlFor='productPriceFrom'>Price from</label>
+            <label htmlFor='productPriceFrom'>From: </label>
             <input 
               className={classes[`filters-input`]}
               type = "number" 
               id = "productPriceFrom" 
-              value = {priceFromValue}
+              max = {isNaN(parseInt(priceToValue))?0:parseInt(priceToValue)}
               onChange = {changePriceFromHandler}
               onBlur = {blurPriceFromHandler}
               name = "productPriceFrom"
@@ -64,12 +75,13 @@ const Filters = (props: Props) => {
             />
           </div>
           <div className={classes[`filters-filtergroup`]}>
-            <label htmlFor='productPriceTo'>Price to</label>
+            <label htmlFor='productPriceTo'>To: </label>
             <input
               className={classes[`filters-input`]} 
               type = "number" 
               id = "productPriceTo" 
               value = {priceToValue}
+              min={isNaN(parseInt(priceFromValue))?0:parseInt(priceFromValue)}
               onChange = {changePriceToHandler}
               onBlur = {blurPriceToHandler}
               name = "productPriceTo"
@@ -78,6 +90,7 @@ const Filters = (props: Props) => {
           </div>
           
         </div>
+        <button onClick = {handleClick} className={classes[`big-button`]}>Filter</button>
     </div>
   )
 }

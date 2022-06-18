@@ -6,6 +6,7 @@ type Props = {
   id:number,
   title:String,
   desc:String,
+  price:number,
   onClick:(id:number)=>void
 }
 
@@ -20,6 +21,7 @@ const ShopItem = (props: Props) => {
         <section className={classes[`shop-item-content`]}>
             <h2 className={classes[`shop-item-title`]}>{props.title}</h2>
             <p className={classes[`shop-item-description`]}>{props.desc}</p>
+            <p className = {classes[`shop-item-description`]}>Price: {props.price}</p>
         </section>
     </div>
   )

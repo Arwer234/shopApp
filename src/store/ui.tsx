@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     isModalShown:false,
-    selectedItem:0
+    selectedItem:0,
 }
 
 const uiSlice = createSlice({
@@ -12,9 +12,9 @@ const uiSlice = createSlice({
         changeOverlayShown(state){
             state.isModalShown = !state.isModalShown
         },
-        setSelectedItem(state,actions){
-            state.selectedItem = actions.payload
-        }
+        setSelectedItem(state,action){
+            state.selectedItem = action.payload
+        },
     }
 })
 
