@@ -1,0 +1,19 @@
+.product-details{
+    display: flex;
+    flex-direction: column;
+    background-color: #DFE9EB;
+    flex-grow: 7;
+    justify-content: space-around;
+}
+.product-details-info{
+    background-color: white;
+    margin:2rem;
+}
+.product-imgs{
+    margin:2rem;
+}
+.product-details-content{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
