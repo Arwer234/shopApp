@@ -52,5 +52,8 @@
     margin:1rem;
     letter-spacing: 0.1rem;
 }
+.big-button:hover{
+    cursor:pointer;
+}
 .filters-filter-input{}
 .filters-input-invalid{}

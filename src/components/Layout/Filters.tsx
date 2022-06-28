@@ -67,6 +67,7 @@ const Filters = (props: Props) => {
               className={classes[`filters-input`]}
               type = "number" 
               id = "productPriceFrom" 
+              min = {0}
               max = {isNaN(parseInt(priceToValue))?0:parseInt(priceToValue)}
               onChange = {changePriceFromHandler}
               onBlur = {blurPriceFromHandler}
@@ -82,6 +83,7 @@ const Filters = (props: Props) => {
               id = "productPriceTo" 
               value = {priceToValue}
               min={isNaN(parseInt(priceFromValue))?0:parseInt(priceFromValue)}
+              max = {999999}
               onChange = {changePriceToHandler}
               onBlur = {blurPriceToHandler}
               name = "productPriceTo"

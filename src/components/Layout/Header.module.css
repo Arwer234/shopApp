@@ -16,3 +16,25 @@
 .title{
     font-size:3rem;
 }
+.header-login-img, .header-cart-img{
+    width:64px;
+    height:64px;
+}
+
+.header-controls{
+    display:flex;
+    flex-direction: row;
+}
+.header-login,.header-cart{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding:1rem;
+    margin:0.5rem;
+    border-radius: 3rem;
+    transition: 0.2s ease-in;
+}
+.header-login:hover, .header-cart:hover{
+    background-color: #A9CCCF;
+    cursor: pointer;
+}
