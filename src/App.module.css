@@ -1,9 +1,4 @@
-.shop-content{
-    display:flex;
-    flex-direction: row;
-    background-color: #DFE9EB;
-    flex-grow:7;
-}
+
 .footer{
     background-color: #61828A;
     display:flex;

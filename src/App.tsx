@@ -1,14 +1,16 @@
-import React, { Fragment } from 'react';
-import classes from './App.module.css';
 import { useSelector } from 'react-redux';
+import { Route,Routes } from 'react-router';
+
+import classes from './App.module.css';
 
 import Header from './components/Layout/Header'
 import Navbar from './components/Layout/Navbar';
-import Filters from './components/Layout/Filters';
-import ShopItems from './components/Shop/ShopItems';
 import Modal from './components/UI/Modal';
 
 import { RootState } from './store/index';
+
+import Landing from './pages/Landing';
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
   const isModalShown = useSelector((state:RootState) => state.ui.isModalShown)
@@ -18,10 +20,10 @@ function App() {
       {isModalShown && <Modal/>}
       <Header/>
       <Navbar/>
-      <main className={classes[`shop-content`]}>
-        <Filters/>
-        <ShopItems/>
-      </main>
+      <Routes>
+        <Route path = '/' element={<Landing/>}/>
+        <Route path = '/product-details/:id' element={<ProductDetails/>}/>
+      </Routes>
       <footer className={classes[`footer`]}>
         <p>© 2022 Jakub Filipowski</p>
         <p>Test data</p>
