@@ -18,7 +18,7 @@ const ShopItems = (props: Props) => {
   console.log(filteredShopItems)
 
   const handleItemClick = (id:number) =>{
-    dispatch(uiActions.changeOverlayShown())
+    //dispatch(uiActions.changeOverlayShown())
     dispatch(uiActions.setSelectedItem(id))
   }
   

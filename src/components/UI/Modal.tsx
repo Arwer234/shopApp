@@ -7,8 +7,8 @@ import { RootState } from '../../store'
 type Props = {}
 
 const Modal = (props: Props) => {
-  const selectedItemId:number = useSelector((state:RootState) => state.ui.selectedItem)
-  const item = useSelector((state:RootState) => state.data.shop_items[selectedItemId])
+  //const selectedItemId:number = useSelector((state:RootState) => state.ui.selectedItem)
+  //const item = useSelector((state:RootState) => state.data.shop_items[selectedItemId])
 
   const handleClick = (event:React.MouseEvent) =>{
     event.stopPropagation()
@@ -16,8 +16,6 @@ const Modal = (props: Props) => {
   return (
     <Overlay>
         <section onClick={handleClick} className={classes[`modal`]}>
-            <h2>{item.title}</h2>
-            <p>{item.desc}</p>
         </section>
     </Overlay>
   )
