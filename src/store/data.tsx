@@ -4,7 +4,8 @@ export type tShopItem = {
     id: number,
     name: string,
     desc: string,
-    price: number
+    price: number,
+    img:string
 }
 
 type tFilters = {
@@ -14,98 +15,9 @@ type tFilters = {
 }
 
 const initialState = {
-    shop_items: [
-        {
-            id: 0,
-            name: "Sample 1",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 1.55
-        },
-        {
-            id: 1,
-            name: "Sample 2",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 2.55
-        },
-        {
-            id: 2,
-            name: "Sample 3",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 3.55
-        },
-        {
-            id: 3,
-            name: "Sample 4",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 4.55
-        }, {
-            id: 4,
-            name: "Sample 5",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 5.55
-        }, {
-            id: 5,
-            name: "Sample 6",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 6.55
-        }, {
-            id: 6,
-            name: "Sample 7",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 7.55
-        }, {
-            id: 7,
-            name: "Sample 8",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 5.55
-        },
-    ],
-    filtered_shop_items: [
-        {
-            id: 0,
-            name: "Sample 1",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 1.55
-        },
-        {
-            id: 1,
-            name: "Sample 2",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 2.55
-        },
-        {
-            id: 2,
-            name: "Sample 3",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 3.55
-        },
-        {
-            id: 3,
-            name: "Sample 4",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 4.55
-        }, {
-            id: 4,
-            name: "Sample 5",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 5.55
-        }, {
-            id: 5,
-            name: "Sample 6",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 6.55
-        }, {
-            id: 6,
-            name: "Sample 7",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 7.55
-        }, {
-            id: 7,
-            name: "Sample 8",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            price: 5.55
-        }
-    ],
+    isDataLoaded:false,
+    shop_items: [],
+    filtered_shop_items: [],
     filters: {
         name: "",
         priceFrom: 0,
@@ -135,6 +47,7 @@ const dataSlice = createSlice({
         },
         setShopItems(state,action){
             state.shop_items = action.payload
+            state.isDataLoaded = true
             state.filtered_shop_items = action.payload.filter((item : tShopItem) => {
                 return isItemValid(item, state.filters)
             })

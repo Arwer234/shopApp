@@ -3,14 +3,16 @@ import { useSelector } from 'react-redux'
 
 import Reviews from '../components/Layout/Reviews'
 import { RootState } from '../store'
+import { tShopItem } from '../store/data'
 
 import classes from "./ProductDetails.module.css"
 
 type Props = {}
 
 const ProductDetails = (props : Props) => {
-    const itemId = useSelector((state:RootState) => state.ui.selectedItem)
-    const item = useSelector((state:RootState)=>state.data.shop_items).filter(item =>{return item.id === itemId})[0]
+    const itemId:number = useSelector((state:RootState) => state.ui.selectedItem)
+    const items:tShopItem[] = useSelector((state:RootState)=>state.data.shop_items)
+    const item:tShopItem = items.filter(item =>{return item.id === itemId})[0]
     
     console.log(item)
 

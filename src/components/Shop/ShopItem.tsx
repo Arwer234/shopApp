@@ -7,6 +7,7 @@ type Props = {
   name:String,
   desc:String,
   price:number,
+  img:string,
   onClick:(id:number)=>void
 }
 
@@ -16,7 +17,7 @@ const ShopItem = (props: Props) => {
   }
   return (
     <div onClick = {handleClick} className={classes['shop-item']}>
-        <img src = {home} alt = "sample"/>
+        <img className = {classes[`shop-item-img`]} src = {require("../../imgs/"+props.img)} alt = "sample"/>
         
         <section className={classes[`shop-item-content`]}>
             <h2 className={classes[`shop-item-name`]}>{props.name}</h2>
