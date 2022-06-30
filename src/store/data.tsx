@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit'
 
 export type tShopItem = {
     id: number,
-    title: string,
+    name: string,
     desc: string,
     price: number
 }
@@ -17,45 +17,45 @@ const initialState = {
     shop_items: [
         {
             id: 0,
-            title: "Sample 1",
+            name: "Sample 1",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 1.55
         },
         {
             id: 1,
-            title: "Sample 2",
+            name: "Sample 2",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 2.55
         },
         {
             id: 2,
-            title: "Sample 3",
+            name: "Sample 3",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 3.55
         },
         {
             id: 3,
-            title: "Sample 4",
+            name: "Sample 4",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 4.55
         }, {
             id: 4,
-            title: "Sample 5",
+            name: "Sample 5",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 5.55
         }, {
             id: 5,
-            title: "Sample 6",
+            name: "Sample 6",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 6.55
         }, {
             id: 6,
-            title: "Sample 7",
+            name: "Sample 7",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 7.55
         }, {
             id: 7,
-            title: "Sample 8",
+            name: "Sample 8",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 5.55
         },
@@ -63,45 +63,45 @@ const initialState = {
     filtered_shop_items: [
         {
             id: 0,
-            title: "Sample 1",
+            name: "Sample 1",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 1.55
         },
         {
             id: 1,
-            title: "Sample 2",
+            name: "Sample 2",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 2.55
         },
         {
             id: 2,
-            title: "Sample 3",
+            name: "Sample 3",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 3.55
         },
         {
             id: 3,
-            title: "Sample 4",
+            name: "Sample 4",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 4.55
         }, {
             id: 4,
-            title: "Sample 5",
+            name: "Sample 5",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 5.55
         }, {
             id: 5,
-            title: "Sample 6",
+            name: "Sample 6",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 6.55
         }, {
             id: 6,
-            title: "Sample 7",
+            name: "Sample 7",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 7.55
         }, {
             id: 7,
-            title: "Sample 8",
+            name: "Sample 8",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             price: 5.55
         }
@@ -114,7 +114,7 @@ const initialState = {
 }
 
 const isItemValid = (item : tShopItem, filters : tFilters) => {
-    if (filters.name !== "" && !item.title.includes(filters.name)) 
+    if (filters.name !== "" && !item.name.includes(filters.name)) 
       return false
     if (item.price < filters.priceFrom) 
       return false
@@ -130,6 +130,12 @@ const dataSlice = createSlice({
         setFilters(state, action) {
             state.filters = action.payload
             state.filtered_shop_items = state.shop_items.filter((item : tShopItem) => {
+                return isItemValid(item, state.filters)
+            })
+        },
+        setShopItems(state,action){
+            state.shop_items = action.payload
+            state.filtered_shop_items = action.payload.filter((item : tShopItem) => {
                 return isItemValid(item, state.filters)
             })
         }

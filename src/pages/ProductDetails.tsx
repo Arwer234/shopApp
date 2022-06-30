@@ -21,7 +21,7 @@ const ProductDetails = (props : Props) => {
 
                 </div>
                 <div className={classes[`product-details-info`]}>
-                    <h2>{item.title}</h2>
+                    <h2>{item.name}</h2>
                     <p className={classes[`product-details-descr`]}>
 
                     </p>

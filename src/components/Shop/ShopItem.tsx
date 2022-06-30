@@ -4,7 +4,7 @@ import home from '../../imgs/product.png'
 
 type Props = {
   id:number,
-  title:String,
+  name:String,
   desc:String,
   price:number,
   onClick:(id:number)=>void
@@ -19,7 +19,7 @@ const ShopItem = (props: Props) => {
         <img src = {home} alt = "sample"/>
         
         <section className={classes[`shop-item-content`]}>
-            <h2 className={classes[`shop-item-title`]}>{props.title}</h2>
+            <h2 className={classes[`shop-item-name`]}>{props.name}</h2>
             <p className={classes[`shop-item-description`]}>{props.desc}</p>
             <p className = {classes[`shop-item-description`]}>Price: {props.price}</p>
         </section>
