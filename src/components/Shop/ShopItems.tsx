@@ -24,7 +24,7 @@ const ShopItems = (props: Props) => {
     //dispatch(uiActions.changeOverlayShown())
     console.log(id)
     dispatch(uiActions.setSelectedItem(id))
-    navigate('/product-details/'+id)
+    navigate('/product-details')
   }
   
   return (

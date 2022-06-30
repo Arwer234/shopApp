@@ -52,7 +52,16 @@
     margin:1rem;
     letter-spacing: 0.1rem;
 }
-.big-button:hover{
+.big-button-reverse{
+    border: 2px solid #61828A;
+    border-radius: 20px;
+    padding:1rem;
+    color:#61828A;
+    background-color: white;
+    margin:1rem;
+    letter-spacing: 0.1rem;
+}
+.big-button:hover, .big-button-reverse:hover{
     cursor:pointer;
 }
 .filters-filter-input{}

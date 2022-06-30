@@ -22,7 +22,7 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path = '/' element={<Landing/>}/>
-        <Route path = '/product-details/:id' element={<ProductDetails/>}/>
+        <Route path = '/product-details' element={<ProductDetails/>}/>
       </Routes>
       <footer className={classes[`footer`]}>
         <p>© 2022 Jakub Filipowski</p>

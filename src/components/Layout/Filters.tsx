@@ -34,14 +34,18 @@ const Filters = (props: Props) => {
     valueIsValid:priceToIsValid
   } = useInput(numberValidation)
 
-  const handleClick = () =>{
-    console.log(priceFromValue)
+  const handleFilterClick = () =>{
     const filterState = {
       name:nameValue,
       priceFrom:typeof(priceFromValue) === "string"?parseInt(priceFromValue):0,
       priceTo:typeof(priceToValue) === "string"?parseInt(priceToValue):999
     }
     dispatch(dataActions.setFilters(filterState))
+  }
+  const handleClearClick = () =>{
+    resetNameHandler()
+    resetPriceFromHandler()
+    resetPriceToHandler()
   }
   return (
     <div className = {classes.filters}>
@@ -92,7 +96,11 @@ const Filters = (props: Props) => {
           </div>
           
         </div>
-        <button onClick = {handleClick} className={classes[`big-button`]}>Filter</button>
+        <div className={classes[`filters-control`]}>
+          <button onClick = {handleFilterClick} className={classes[`big-button`]}>Filter</button>
+          <button onClick = {handleClearClick} className={classes[`big-button-reverse`]}>Clear</button>
+        </div>
+        
     </div>
   )
 }
