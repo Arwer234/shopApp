@@ -1,10 +1,10 @@
 import React from 'react'
 import Overlay from './Overlay'
 import classes from "./Modal.module.css"
-import { useSelector } from 'react-redux'
-import { RootState } from '../../store'
 
-type Props = {}
+type Props = {
+  children?:React.ReactElement
+}
 
 const Modal = (props: Props) => {
   //const selectedItemId:number = useSelector((state:RootState) => state.ui.selectedItem)
@@ -16,6 +16,7 @@ const Modal = (props: Props) => {
   return (
     <Overlay>
         <section onClick={handleClick} className={classes[`modal`]}>
+            {props.children}
         </section>
     </Overlay>
   )

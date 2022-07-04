@@ -1,6 +1,6 @@
 .shop-items{
     flex-grow:5;
-
+    min-height: 80vh;
     margin:2rem;
     background-color: white;
     display:flex;

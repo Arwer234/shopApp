@@ -12,7 +12,7 @@ const useFirebase = () => {
     const database = getFirestore(app)
 
     const getData = () =>{
-        const q = query(collection(database,"shop_items"),orderBy('timestamp','desc'))
+        //const q = query(collection(database,"shop_items"),orderBy('timestamp','desc'))
         onSnapshot(collection(database,'shop_items'),(snapshot)=>{
             dispatch(dataActions.setShopItems(snapshot.docs.map(doc => doc.data())))
         })

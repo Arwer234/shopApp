@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Route,Routes } from 'react-router';
 
@@ -6,27 +7,28 @@ import classes from './App.module.css';
 import Header from './components/Layout/Header'
 import Navbar from './components/Layout/Navbar';
 import Modal from './components/UI/Modal';
+import Login from './components/User/Login';
 
 import { RootState } from './store/index';
 
 import Landing from './pages/Landing';
 import ProductDetails from './pages/ProductDetails';
+
+
 import useFirebase from './hooks/useFirebase';
-import { FirebaseDatabaseProvider } from '@react-firebase/database';
-import firebaseConfig from './settings/firebase';
-import { useEffect } from 'react';
+
 
 
 function App() {
   const isModalShown = useSelector((state:RootState) => state.ui.isModalShown)
   const {getData} = useFirebase()
   useEffect(()=>{
-    getData()
+   // getData()
   },[])
 
   return (
       <div className={classes[`main`]}>
-        {isModalShown && <Modal/>}
+        {isModalShown && <Modal><Login/></Modal>}
         <Header/>
         <Navbar/>
         <Routes>

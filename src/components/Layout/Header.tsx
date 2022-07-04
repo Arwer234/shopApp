@@ -4,12 +4,19 @@ import loginImg from "../../imgs/icons8-person-64.png"
 import cartImg from "../../imgs/cart-64-64.png"
 
 import classes from "./Header.module.css"
+import { useDispatch } from 'react-redux'
+
+import {uiActions} from "../../store/index"
+
+
 
 type Props = {}
 
 const Header = (props: Props) => {
+  const dispatch = useDispatch()
 
   const handleLoginClick = () =>{
+    dispatch(uiActions.changeOverlayShown())
     
   }
   const handleCartClick = () =>{
