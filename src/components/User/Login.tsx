@@ -1,14 +1,26 @@
-import React from 'react'
+import React,{useState} from 'react'
+
+import useFirebase from '../../hooks/useFirebase'
 
 import classes from "./Login.module.css"
 
-type Props = {}
+type Props = {
+    onSwitch:()=>void
+}
 
 const Login = (props: Props) => {
+
+    const handleLogin = (event:React.MouseEvent) =>{
+        event.preventDefault()
+        //loginUser()
+    }
+    const handleSwitchOperation = () =>{
+        props.onSwitch()
+    }
     
     return (
         <>
-            <h2>Login</h2>
+            <h2>Sign In</h2>
             <form className={classes[`login-form`]}>
                 <div className={classes[`input-module`]}>
                     <section className={classes[`login-credentials`]}>
@@ -24,7 +36,8 @@ const Login = (props: Props) => {
                     </section>
                     <p className={classes[`input-validation`]}></p>
                 </div>
-                <button className={classes[`big-button`]}>Login</button>
+                <button onClick = {handleLogin} className={classes[`big-button`]}>Login</button>
+                <p>Not a member? <span className={classes[`sign-up`]} onClick={handleSwitchOperation}>Sign Up</span></p>
             </form>
         </>
     )

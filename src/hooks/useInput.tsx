@@ -20,12 +20,13 @@ const useInput = (validateValue:(input:string)=>boolean) => {
     const valueIsValid = validateValue(inputState.value)
 
     const valueChangeHandler = (event:React.ChangeEvent<HTMLInputElement>) =>{
-        if(validateValue(event.target.value) || event.target.value == ''){
+        console.log("a")
+        //if(validateValue(event.target.value) || event.target.value == ''){
             dispatch({
                 type:"INPUT",
                 value:event.target.value
             })
-        }
+        //}
         
     }
     const blurHandler = () =>{
