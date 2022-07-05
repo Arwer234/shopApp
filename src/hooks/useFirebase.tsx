@@ -7,10 +7,14 @@ import firebaseConfig from '../settings/firebase'
 
 import {dataActions} from "../store/index"
 
-function getErrorMessage(error: unknown) {
+const getErrorMessage = (error: unknown) => {
     if (error instanceof Error) return error.message
     return String(error)
-  }
+}
+const parseErrorMessage = (message:string) => {
+    if(message.includes("email-already-in-use")) return {status:"failure", message:"This email is already in use!"}
+    else return {status:"failure", message}
+}
 
 const useFirebase = () => {
     const dispatch = useDispatch()
@@ -27,8 +31,12 @@ const useFirebase = () => {
     const registerUser = async(email:string, password:string) =>{
         try{
             const user = await createUserWithEmailAndPassword(auth,email,password)
+            return {status:"success", message:"Your account has been successfully created!"}
         } catch(error){
-            console.log(getErrorMessage(error))
+            let message = getErrorMessage(error)
+            return parseErrorMessage(message)
+            
+            
         }
         
     }

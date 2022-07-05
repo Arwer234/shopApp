@@ -12,18 +12,18 @@ const validation = {
     },
     validatePassword(input:string){
         let reasons = []
-        if(input.length<8) reasons.push("TOO_SHORT")
+        if(input.length<6) reasons.push("TOO_SHORT")
         if(input.length > 20) reasons.push("TOO_LONG")
         if(input.toLowerCase() === input) reasons.push("NO_UPPERCASE")
 
-        return {valid:reasons.length>0, reasons}
+        return {valid:reasons.length===0, reasons}
     },
     validateUsername(input:string){
         let reasons = []
         if(input.length<5) reasons.push("TOO_SHORT")
         if(input.length>20) reasons.push("TOO_LONG")
-        
-        return {valid:reasons.length>0,reasons}
+        console.log("reasons: " + reasons.length)
+        return {valid:reasons.length===0,reasons}
     }
 } 
 export default validation

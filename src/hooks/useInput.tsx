@@ -15,7 +15,7 @@ const inputReducer = (state:{value:string,isTouched:boolean},action:{type:string
     }   
     return {value:"",isTouched:false}
 }
-const useInput = (validateValue:(input:string)=>boolean) => {
+const useInput = (validateValue:(input:string)=>{reasons?:string[],valid:boolean}) => {
     const [inputState,dispatch] = useReducer(inputReducer,initialState);
     const valueIsValid = validateValue(inputState.value)
 

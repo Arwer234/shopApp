@@ -7,19 +7,6 @@ import useInput from "../../hooks/useInput"
 
 import validation from "../../settings/validation"
 
-const validateUser = (input:string) =>{
-    const obj = validation.validateUsername(input)
-    return obj.valid
-}
-const validateEm = (input:string) =>{
-    const obj = validation.validateEmail(input)
-    return obj.valid
-}
-const validatePass = (input:string) =>{
-    const obj = validation.validatePassword(input)
-    return obj.valid
-}
-
 type Props = {
     onSwitch:()=>void
 }
@@ -35,34 +22,39 @@ const Register = (props: Props) => {
         blurHandler:usernameBlurHandler,
         resetHandler:usernameResetHandler,
         valueIsValid:usernameIsValid
-    } = useInput(validateUser)
+    } = useInput(validation.validateUsername)
     const {
         value:email,
         valueChangeHandler:emailChangeHandler,
         blurHandler:emailBlurHandler,
         resetHandler:emailResetHandler,
         valueIsValid:emailIsValid
-    } = useInput(validateEm)
+    } = useInput(validation.validateEmail)
     const {
         value:password,
         valueChangeHandler:passwordChangeHandler,
         blurHandler:passwordBlurHandler,
         resetHandler:passwordResetHandler,
         valueIsValid:passwordIsValid
-    } = useInput(validatePass)
+    } = useInput(validation.validatePassword)
     const {
         value:confirmPassword,
         valueChangeHandler:confirmPasswordChangeHandler,
         blurHandler:confirmPasswordBlurHandler,
         resetHandler:confirmPasswordResetHandler,
         valueIsValid:confirmPasswordIsValid
-    } = useInput(validatePass)
+    } = useInput(validation.validatePassword)
 
     const {registerUser} = useFirebase()
 
-    const handleRegister = (event:React.MouseEvent) =>{
+    const [message,setMessage] = useState({status:"unset", message:""})
+
+    const handleRegister = async(event:React.MouseEvent) =>{
         event.preventDefault()
-        console.log(usernameIsValid,passwordIsValid,emailIsValid)
+        if(usernameIsValid && emailIsValid && passwordIsValid && confirmPasswordIsValid && password === confirmPassword){
+            const {status,message:responseMessage} = await registerUser(email,password)
+            setMessage({status,message:responseMessage})
+        }
     }
     const handleSwitchOperation = () =>{
         props.onSwitch()
@@ -101,6 +93,10 @@ const Register = (props: Props) => {
                 </div>
                 <button onClick = {handleRegister} className={classes[`big-button`]}>Register</button>
                 <p>Already have an account? <span className={classes[`sign-in`]} onClick={handleSwitchOperation}>Sign In</span></p>
+                <p className={classes[`register-message`]}>
+                    {message.status === "success" && message.message}
+                    {message.status === "failure" && message.message}
+                </p>
             </form>
         </>
   )

@@ -6,8 +6,8 @@ import {dataActions} from '../../store/index'
 
 type Props = {}
 
-const nameValidation = (input:string) => input.trim() !== ""
-const numberValidation = (input:string) => parseInt(input) >= 0
+const nameValidation = (input:string) => {return {valid:input.trim() !== ""}}
+const numberValidation = (input:string) => {return {valid:parseInt(input) >= 0}}
 
 const Filters = (props: Props) => {
   const dispatch = useDispatch()
