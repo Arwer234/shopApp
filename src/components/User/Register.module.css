@@ -29,15 +29,18 @@
     border:none;
     border-bottom:none;
     -webkit-box-shadow: 1px 1px 8px -5px rgba(66, 68, 90, 1);
--moz-box-shadow: 1px 1px 8px -5px rgba(66, 68, 90, 1);
-box-shadow: 1px 1px 8px -5px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 1px 1px 8px -5px rgba(66, 68, 90, 1);
+    box-shadow: 1px 1px 8px -5px rgba(66, 68, 90, 1);
     transition: 0.2s;
     border-radius: 10px;
 }
+.input__error{
+    border:1px solid red !important;
+}
 .register-credentials input:focus{
     -webkit-box-shadow: 1px 1px 8px -1px rgba(66, 68, 90, 1);
--moz-box-shadow: 1px 1px 8px -1px rgba(66, 68, 90, 1);
-box-shadow: 1px 1px 8px -1px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 1px 1px 8px -1px rgba(66, 68, 90, 1);
+    box-shadow: 1px 1px 8px -1px rgba(66, 68, 90, 1);
 }
 .input-module{
     width:60%;
@@ -54,4 +57,8 @@ box-shadow: 1px 1px 8px -1px rgba(66, 68, 90, 1);
 }
 .big-button:hover{
     cursor: pointer;
+}
+.input-validation-error{
+    color:red;
+    font-size:0.7rem;
 }

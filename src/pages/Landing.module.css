@@ -1,6 +1,6 @@
-.shop-content{
-    display:flex;
-    flex-direction: row;
-    background-color: #DFE9EB;
-    flex-grow:7;
+.shop-content {
+	display: flex;
+	flex-direction: row;
+	background-color: #dfe9eb;
+	flex-grow: 7;
 }
