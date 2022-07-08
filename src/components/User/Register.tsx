@@ -62,7 +62,11 @@ const Register = (props: Props) => {
 			emailIsValid.valid &&
 			passwordIsValid.valid &&
 			confirmPasswordIsValid.valid &&
-			password === confirmPassword
+			password === confirmPassword &&
+			username !== "" &&
+			password !== "" &&
+			email !== "" &&
+			confirmPassword !== ""
 		) {
 			const { status, message: responseMessage } = await registerUser(
 				email,
@@ -75,6 +79,10 @@ const Register = (props: Props) => {
 				password: "",
 				confirmPassword: "",
 			});
+			usernameResetHandler()
+			emailResetHandler()
+			passwordResetHandler()
+			confirmPasswordResetHandler()
 		} else {
 			const validationMessage = {
 				username:
@@ -102,6 +110,38 @@ const Register = (props: Props) => {
 	const handleSwitchOperation = () => {
 		props.onSwitch();
 	};
+	const onUsernameBlur = ()=>{
+		setValidationMessages(state =>{
+			return {...state, username:usernameIsValid.reasons !== undefined
+				? parseValidationMessages(usernameIsValid.reasons)
+				: "",}
+		})
+		usernameBlurHandler()
+	}
+	const onEmailBlur = ()=>{
+		setValidationMessages(state =>{
+			return {...state, email:emailIsValid.reasons !== undefined
+				? parseValidationMessages(emailIsValid.reasons)
+				: "",}
+		})
+		emailBlurHandler()
+	}
+	const onPasswordBlur = ()=>{
+		setValidationMessages(state =>{
+			return {...state, password:passwordIsValid.reasons !== undefined
+				? parseValidationMessages(passwordIsValid.reasons)
+				: "",}
+		})
+		passwordBlurHandler()
+	}
+	const onConfirmPasswordBlur = ()=>{
+		setValidationMessages(state =>{
+			return {...state, confirmPassword:confirmPasswordIsValid.reasons !== undefined
+				? parseValidationMessages(confirmPasswordIsValid.reasons)
+				: "",}
+		})
+		confirmPasswordBlurHandler()
+	}
 	return (
 		<>
 			<h2>Sign Up</h2>
@@ -111,12 +151,16 @@ const Register = (props: Props) => {
 						<label htmlFor="register-username">Username</label>
 						<input
 							onChange={usernameChangeHandler}
-							onBlur={usernameBlurHandler}
+							onBlur={onUsernameBlur}
 							value={username}
 							placeholder="Type ..."
 							type="text"
 							name="register-username"
-                            className={!usernameIsValid.valid? classes[`input__error`]:""}
+							className={
+								!usernameIsValid.valid
+									? classes[`input__error`]
+									: ""
+							}
 						/>
 					</section>
 					<p className={classes[`input-validation-error`]}>
@@ -128,12 +172,16 @@ const Register = (props: Props) => {
 						<label htmlFor="register-email">Email</label>
 						<input
 							onChange={emailChangeHandler}
-							onBlur={emailBlurHandler}
+							onBlur={onEmailBlur}
 							value={email}
 							placeholder="Type ..."
 							type="text"
 							name="register-email"
-                            className={!emailIsValid.valid? classes[`input__error`]:""}
+							className={
+								!emailIsValid.valid
+									? classes[`input__error`]
+									: ""
+							}
 						/>
 					</section>
 					<p className={classes[`input-validation-error`]}>
@@ -145,12 +193,16 @@ const Register = (props: Props) => {
 						<label htmlFor="register-password">Password</label>
 						<input
 							onChange={passwordChangeHandler}
-							onBlur={passwordBlurHandler}
+							onBlur={onPasswordBlur}
 							value={password}
 							placeholder="Type ..."
 							type="password"
 							name="register-password"
-                            className={!passwordIsValid.valid? classes[`input__error`]:""}
+							className={
+								!passwordIsValid.valid
+									? classes[`input__error`]
+									: ""
+							}
 						/>
 					</section>
 					<p className={classes[`input-validation-error`]}>
@@ -164,12 +216,16 @@ const Register = (props: Props) => {
 						</label>
 						<input
 							onChange={confirmPasswordChangeHandler}
-							onBlur={confirmPasswordBlurHandler}
+							onBlur={onConfirmPasswordBlur}
 							value={confirmPassword}
 							placeholder="Type ..."
 							type="password"
 							name="register-confirm-password"
-                            className={!confirmPasswordIsValid.valid? classes[`input__error`]:""}
+							className={
+								!confirmPasswordIsValid.valid
+									? classes[`input__error`]
+									: ""
+							}
 						/>
 					</section>
 					<p className={classes[`input-validation-error`]}>

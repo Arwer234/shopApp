@@ -29,6 +29,7 @@ const validation = {
 };
 export const parseValidationMessages = (messages:string[]) =>{
 	let response = ""
+	console.log("b" + messages)
 	messages.forEach(element => {
 		switch(element){
 			case "NOT_AN_EMAIL":
