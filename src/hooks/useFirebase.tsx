@@ -1,4 +1,5 @@
-import { initializeApp } from "firebase/app";
+import { useState } from "react";
+import firebase, { initializeApp } from "firebase/app";
 import {
 	collection,
 	onSnapshot,
@@ -6,7 +7,13 @@ import {
 	query,
 	orderBy,
 } from "firebase/firestore";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+	createUserWithEmailAndPassword,
+	getAuth,
+	onAuthStateChanged,
+	signInWithEmailAndPassword,
+	User as FirebaseUser,
+} from "firebase/auth";
 import { useDispatch } from "react-redux";
 
 import firebaseConfig from "../settings/firebase";
@@ -29,6 +36,20 @@ const useFirebase = () => {
 	const database = getFirestore(app);
 	const auth = getAuth(app);
 
+	const [currentUser, setCurrentUser] = useState<FirebaseUser | null>(null);
+
+	onAuthStateChanged(auth, async (authStateUser: FirebaseUser | null) => {
+		const authStateUserId = await authStateUser?.getIdToken();
+		const currentUserID = await currentUser?.getIdToken();
+		console.log(currentUser);
+		if (
+			authStateUserId !== currentUserID ||
+			(currentUser === null && authStateUser !== null)
+		) {
+			setCurrentUser(authStateUser);
+		}
+	});
+
 	const getData = () => {
 		//const q = query(collection(database,"shop_items"),orderBy('timestamp','desc'))
 		onSnapshot(collection(database, "shop_items"), (snapshot) => {
@@ -44,6 +65,8 @@ const useFirebase = () => {
 				email,
 				password
 			);
+			console.log("USer:");
+			console.log(user);
 			return {
 				status: "success",
 				message: "Your account has been successfully created!",
@@ -53,8 +76,24 @@ const useFirebase = () => {
 			return parseErrorMessage(message);
 		}
 	};
+	const signInUser = (email:string,password:string) => {
+		signInWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+				// Signed in
+				const user = setCurrentUser(userCredential.user)
+				// ...
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+			});
+	};
+	const signOutUser = () => {
+		auth.signOut();
+		setCurrentUser(null)
+	};
 
-	return { getData, registerUser };
+	return { getData, registerUser, signOutUser, currentUser };
 };
 
 export default useFirebase;

@@ -8,7 +8,10 @@ import { useDispatch } from "react-redux";
 
 import { uiActions } from "../../store/index";
 
-type Props = {};
+type Props = {
+	isUserLoggedIn: boolean;
+	onSignOutUser:() => void
+};
 
 const Header = (props: Props) => {
 	const dispatch = useDispatch();
@@ -16,6 +19,9 @@ const Header = (props: Props) => {
 	const handleLoginClick = () => {
 		dispatch(uiActions.changeOverlayShown());
 	};
+	const handleLogoutClick = () =>{
+		props.onSignOutUser()
+	}
 	const handleCartClick = () => {};
 	return (
 		<header className={classes.header}>
@@ -23,15 +29,16 @@ const Header = (props: Props) => {
 			<img className={classes.logo} src={logo} alt="Logo" />
 			<div className={classes[`header-controls`]}>
 				<div
-					onClick={handleLoginClick}
+					onClick={props.isUserLoggedIn?handleLogoutClick:handleLoginClick}
 					className={classes[`header-login`]}
 				>
 					<img
 						className={classes[`header-login-img`]}
 						src={loginImg}
 					/>
-					<p className={classes[`header-login-desc`]}>Login</p>
+					<p className={classes[`header-login-desc`]}>{props.isUserLoggedIn?"Logout":"Login"}</p>
 				</div>
+
 				<div
 					onClick={handleCartClick}
 					className={classes[`header-cart`]}

@@ -25,7 +25,7 @@ function App() {
 	const isModalShown = useSelector(
 		(state: RootState) => state.ui.isModalShown
 	);
-	const { getData } = useFirebase();
+	const { getData, currentUser, signOutUser} = useFirebase();
 
 	useEffect(() => {
 		if (appConfig.canFetchData) getData();
@@ -48,7 +48,7 @@ function App() {
 					)}
 				</Modal>
 			)}
-			<Header />
+			<Header isUserLoggedIn = {currentUser !== null} onSignOutUser = {signOutUser} />
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Landing />} />

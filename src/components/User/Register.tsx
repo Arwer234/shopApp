@@ -45,7 +45,7 @@ const Register = (props: Props) => {
 		valueIsValid: confirmPasswordIsValid,
 	} = useInput(validation.validatePassword);
 
-	const { registerUser } = useFirebase();
+	const { registerUser} = useFirebase();
 
 	const [message, setMessage] = useState({ status: "unset", message: "" });
 	const [validationMessages, setValidationMessages] = useState({
@@ -72,17 +72,21 @@ const Register = (props: Props) => {
 				email,
 				password
 			);
+			//console.log(currentUser)
 			setMessage({ status, message: responseMessage });
-			setValidationMessages({
-				username: "",
-				email: "",
-				password: "",
-				confirmPassword: "",
-			});
-			usernameResetHandler()
-			emailResetHandler()
-			passwordResetHandler()
-			confirmPasswordResetHandler()
+			if(status === "success"){
+				setValidationMessages({
+					username: "",
+					email: "",
+					password: "",
+					confirmPassword: "",
+				});
+				usernameResetHandler()
+				emailResetHandler()
+				passwordResetHandler()
+				confirmPasswordResetHandler()
+			}
+			
 		} else {
 			const validationMessage = {
 				username:
