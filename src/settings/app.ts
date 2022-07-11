@@ -1,4 +1,4 @@
 const appConfig = {
-    canFetchData:false
+    canFetchData:true
 }
 export default appConfig

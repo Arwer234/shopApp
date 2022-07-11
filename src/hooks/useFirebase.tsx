@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import firebaseConfig from "../settings/firebase";
 
 import { dataActions } from "../store/index";
+import appConfig from "../settings/app";
 
 const getErrorMessage = (error: unknown) => {
 	if (error instanceof Error) return error.message;
@@ -45,12 +46,17 @@ const useFirebase = () => {
 	});
 
 	const getData = () => {
-		onSnapshot(collection(database, "shop_items"), (snapshot) => {
-			dispatch(
-				dataActions.setShopItems(snapshot.docs.map((doc) => doc.data()))
-			);
-		});
+		if(appConfig.canFetchData){
+			onSnapshot(collection(database, "shop_items"), (snapshot) => {
+				dispatch(
+					dataActions.setShopItems(snapshot.docs.map((doc) => doc.data()))
+				);
+			});
+		}
+		else console.log("App config is set to restrict fetching!")
+		
 	};
+
 	const signUpUser = async (email: string, password: string) => {
 		try {
 			const userCredential = await createUserWithEmailAndPassword(

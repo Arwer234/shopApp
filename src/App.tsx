@@ -14,19 +14,19 @@ import { RootState } from "./store/index";
 import Landing from "./pages/Landing";
 import ProductDetails from "./pages/ProductDetails";
 
-import appConfig from "./settings/app";
-
 import useFirebase from "./hooks/useFirebase";
 
 function App() {
-
 	const isModalShown = useSelector(
 		(state: RootState) => state.ui.isModalShown
+	);
+	const isDataLoaded = useSelector(
+		(state: RootState) => state.data.isDataLoaded
 	);
 	const { getData, currentUser, signOutUser } = useFirebase();
 
 	useEffect(() => {
-		if (appConfig.canFetchData) getData();
+		if (!isDataLoaded) getData();
 	}, []);
 
 	return (
@@ -43,7 +43,10 @@ function App() {
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Landing />} />
-				<Route path="/product-details" element={<ProductDetails />} />
+				<Route
+					path="/product-details/:id"
+					element={<ProductDetails />}
+				/>
 			</Routes>
 			<footer className={classes[`footer`]}>
 				<p>© 2022 Jakub Filipowski</p>

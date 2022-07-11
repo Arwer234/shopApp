@@ -24,7 +24,7 @@ const ShopItems = (props: Props) => {
 
 	const handleItemClick = (id: number) => {
 		dispatch(uiActions.setSelectedItem(id));
-		navigate("/product-details");
+		navigate("/product-details/"+id);
 	};
 
 	return (

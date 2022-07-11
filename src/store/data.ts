@@ -6,6 +6,8 @@ export type tShopItem = {
 	desc: string;
 	price: number;
 	img: string;
+	long_desc:string;
+	params:Map<string,string>;
 };
 
 type tFilters = {
@@ -18,6 +20,7 @@ const initialState = {
 	isDataLoaded: false,
 	shop_items: [],
 	filtered_shop_items: [],
+	selected_shop_item:{},
 	filters: {
 		name: "",
 		priceFrom: 0,
