@@ -1,32 +1,46 @@
-.login-form{
+.sign-in{
+    font-size:1.1rem;
+    border-radius: 10px;
+    padding: 0.7rem;
+    margin: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.sign-in:hover{
+    background-color: #A9CCCF;
+    color: white;
+}
+.auth-form{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 75%;
 }
-.login-credentials{
+.auth-credentials{
     width:100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
-.login-credentials input{
+.auth-credentials input{
     padding:0.7rem;
     outline: none;
     border:none;
     border-bottom:none;
     -webkit-box-shadow: 1px 1px 8px -5px rgba(66, 68, 90, 1);
--moz-box-shadow: 1px 1px 8px -5px rgba(66, 68, 90, 1);
-box-shadow: 1px 1px 8px -5px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 1px 1px 8px -5px rgba(66, 68, 90, 1);
+    box-shadow: 1px 1px 8px -5px rgba(66, 68, 90, 1);
     transition: 0.2s;
     border-radius: 10px;
-    
 }
-.login-credentials input:focus{
+.input__error{
+    border:1px solid red !important;
+}
+.auth-credentials input:focus{
     -webkit-box-shadow: 1px 1px 8px -1px rgba(66, 68, 90, 1);
--moz-box-shadow: 1px 1px 8px -1px rgba(66, 68, 90, 1);
-box-shadow: 1px 1px 8px -1px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 1px 1px 8px -1px rgba(66, 68, 90, 1);
+    box-shadow: 1px 1px 8px -1px rgba(66, 68, 90, 1);
 }
 .input-module{
     width:60%;
@@ -44,15 +58,7 @@ box-shadow: 1px 1px 8px -1px rgba(66, 68, 90, 1);
 .big-button:hover{
     cursor: pointer;
 }
-.sign-up{
-    font-size:1.1rem;
-    border-radius: 10px;
-    padding: 0.7rem;
-    margin: 1rem;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.sign-up:hover{
-    background-color: #A9CCCF;
-    color: white;
+.input-validation-error{
+    color:red;
+    font-size:0.7rem;
 }

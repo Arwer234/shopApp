@@ -1,12 +1,6 @@
 import { useState } from "react";
-import firebase, { initializeApp } from "firebase/app";
-import {
-	collection,
-	onSnapshot,
-	getFirestore,
-	query,
-	orderBy,
-} from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { collection, onSnapshot, getFirestore } from "firebase/firestore";
 import {
 	createUserWithEmailAndPassword,
 	getAuth,
@@ -14,6 +8,7 @@ import {
 	signInWithEmailAndPassword,
 	User as FirebaseUser,
 } from "firebase/auth";
+
 import { useDispatch } from "react-redux";
 
 import firebaseConfig from "../settings/firebase";
@@ -41,7 +36,6 @@ const useFirebase = () => {
 	onAuthStateChanged(auth, async (authStateUser: FirebaseUser | null) => {
 		const authStateUserId = await authStateUser?.getIdToken();
 		const currentUserID = await currentUser?.getIdToken();
-		console.log(currentUser);
 		if (
 			authStateUserId !== currentUserID ||
 			(currentUser === null && authStateUser !== null)
@@ -51,22 +45,20 @@ const useFirebase = () => {
 	});
 
 	const getData = () => {
-		//const q = query(collection(database,"shop_items"),orderBy('timestamp','desc'))
 		onSnapshot(collection(database, "shop_items"), (snapshot) => {
 			dispatch(
 				dataActions.setShopItems(snapshot.docs.map((doc) => doc.data()))
 			);
 		});
 	};
-	const registerUser = async (email: string, password: string) => {
+	const signUpUser = async (email: string, password: string) => {
 		try {
-			const user = await createUserWithEmailAndPassword(
+			const userCredential = await createUserWithEmailAndPassword(
 				auth,
 				email,
 				password
 			);
-			console.log("USer:");
-			console.log(user);
+			setCurrentUser(userCredential.user);
 			return {
 				status: "success",
 				message: "Your account has been successfully created!",
@@ -76,24 +68,29 @@ const useFirebase = () => {
 			return parseErrorMessage(message);
 		}
 	};
-	const signInUser = (email:string,password:string) => {
-		signInWithEmailAndPassword(auth, email, password)
-			.then((userCredential) => {
-				// Signed in
-				const user = setCurrentUser(userCredential.user)
-				// ...
-			})
-			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-			});
+	const signInUser = async (email: string, password: string) => {
+		try {
+			const userCredential = await signInWithEmailAndPassword(
+				auth,
+				email,
+				password
+			);
+			setCurrentUser(userCredential.user);
+			return {
+				status: "success",
+				message: "You have been successfully signed in!",
+			};
+		} catch (error) {
+			let message = getErrorMessage(error);
+			return parseErrorMessage(message);
+		}
 	};
 	const signOutUser = () => {
 		auth.signOut();
-		setCurrentUser(null)
+		setCurrentUser(null);
 	};
 
-	return { getData, registerUser, signOutUser, currentUser };
+	return { getData, signUpUser, signOutUser, currentUser, signInUser};
 };
 
 export default useFirebase;

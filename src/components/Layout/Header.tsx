@@ -10,7 +10,7 @@ import { uiActions } from "../../store/index";
 
 type Props = {
 	isUserLoggedIn: boolean;
-	onSignOutUser:() => void
+	onSignOutUser: () => void;
 };
 
 const Header = (props: Props) => {
@@ -19,9 +19,9 @@ const Header = (props: Props) => {
 	const handleLoginClick = () => {
 		dispatch(uiActions.changeOverlayShown());
 	};
-	const handleLogoutClick = () =>{
-		props.onSignOutUser()
-	}
+	const handleLogoutClick = () => {
+		props.onSignOutUser();
+	};
 	const handleCartClick = () => {};
 	return (
 		<header className={classes.header}>
@@ -29,14 +29,20 @@ const Header = (props: Props) => {
 			<img className={classes.logo} src={logo} alt="Logo" />
 			<div className={classes[`header-controls`]}>
 				<div
-					onClick={props.isUserLoggedIn?handleLogoutClick:handleLoginClick}
+					onClick={
+						props.isUserLoggedIn
+							? handleLogoutClick
+							: handleLoginClick
+					}
 					className={classes[`header-login`]}
 				>
 					<img
 						className={classes[`header-login-img`]}
 						src={loginImg}
 					/>
-					<p className={classes[`header-login-desc`]}>{props.isUserLoggedIn?"Logout":"Login"}</p>
+					<p className={classes[`header-login-desc`]}>
+						{props.isUserLoggedIn ? "Logout" : "Login"}
+					</p>
 				</div>
 
 				<div

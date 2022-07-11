@@ -27,25 +27,25 @@ const validation = {
 		return { valid: reasons.length === 0, reasons };
 	},
 };
-export const parseValidationMessages = (messages:string[]) =>{
-	let response = ""
-	console.log("b" + messages)
-	messages.forEach(element => {
-		switch(element){
+export const parseValidationMessages = (messages: string[]) => {
+	let response = "";
+	console.log("b" + messages);
+	messages.forEach((element) => {
+		switch (element) {
 			case "NOT_AN_EMAIL":
-				response += "The email is incorrect!\n"
+				response += "The email is incorrect!\n";
 				break;
 			case "TOO_SHORT":
-				response += "Provided value is too short!\n"
+				response += "Provided value is too short!\n";
 				break;
 			case "TOO_LONG":
-				response += "Provided value is too long!\n"
+				response += "Provided value is too long!\n";
 				break;
 			case "NO_UPPERCASE":
-				response+= "Provided value contains no uppercase!\n"
+				response += "Provided value contains no uppercase!\n";
 				break;
 		}
 	});
-	return response
-}
+	return response;
+};
 export default validation;

@@ -57,7 +57,7 @@ const Filters = (props: Props) => {
       <h2>Filters</h2>
       <div className={classes[`filters-list`]}>
         <div className={classes[`filters-filtergroup`]}>
-          <label htmlFor="productNameFilter">Name: </label>
+          <label htmlFor="productNameFilter">Name</label>
           <input
             className={classes[`filters-input`]}
             type="text"
@@ -71,7 +71,7 @@ const Filters = (props: Props) => {
         </div>
         <h3>Price</h3>
         <div className={classes[`filters-filtergroup`]}>
-          <label htmlFor="productPriceFrom">From: </label>
+          <label htmlFor="productPriceFrom">From</label>
           <input
             className={classes[`filters-input`]}
             type="number"
@@ -85,7 +85,7 @@ const Filters = (props: Props) => {
           />
         </div>
         <div className={classes[`filters-filtergroup`]}>
-          <label htmlFor="productPriceTo">To: </label>
+          <label htmlFor="productPriceTo">To</label>
           <input
             className={classes[`filters-input`]}
             type="number"

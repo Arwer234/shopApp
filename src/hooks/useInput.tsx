@@ -22,7 +22,9 @@ const useInput = (
 	validateValue: (input: string) => { reasons?: string[]; valid: boolean }
 ) => {
 	const [inputState, dispatch] = useReducer(inputReducer, initialState);
-	const valueIsValid = inputState.isTouched?validateValue(inputState.value):{valid:true};
+	const valueIsValid = inputState.isTouched
+		? validateValue(inputState.value)
+		: { valid: true };
 
 	const valueChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch({
