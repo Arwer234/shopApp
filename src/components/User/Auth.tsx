@@ -10,7 +10,7 @@ import validation, { parseValidationMessages } from "../../settings/validation";
 type Props = {};
 
 const Auth = (props: Props) => {
-	const [isToSignIn, setIsToSignIn] = useState(false);
+	const [isToSignIn, setIsToSignIn] = useState(true);
 
 	/**
 	 * Initialization of form logic

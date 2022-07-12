@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { initializeApp } from "firebase/app";
-import { collection, onSnapshot, getFirestore } from "firebase/firestore";
+import {
+	collection,
+	onSnapshot,
+	getFirestore,
+	updateDoc,
+	setDoc,
+	doc,
+} from "firebase/firestore";
 import {
 	createUserWithEmailAndPassword,
 	getAuth,
@@ -13,7 +20,7 @@ import { useDispatch } from "react-redux";
 
 import firebaseConfig from "../settings/firebase";
 
-import { dataActions } from "../store/index";
+import { dataActions, userActions } from "../store/index";
 import appConfig from "../settings/app";
 
 const getErrorMessage = (error: unknown) => {
@@ -45,18 +52,43 @@ const useFirebase = () => {
 		}
 	});
 
-	const getData = () => {
-		if(appConfig.canFetchData){
+	const getShopItemsData = () => {
+		if (appConfig.canFetchData) {
 			onSnapshot(collection(database, "shop_items"), (snapshot) => {
 				dispatch(
-					dataActions.setShopItems(snapshot.docs.map((doc) => doc.data()))
+					dataActions.setShopItems(
+						snapshot.docs.map((doc) => doc.data())
+					)
 				);
 			});
-		}
-		else console.log("App config is set to restrict fetching!")
-		
+		} else console.log("App config is set to restrict fetching!");
 	};
-
+	const getUserFavouritesData = () => {
+		if (currentUser !== null) {
+			onSnapshot(collection(database, "user_favourites"), (snapshot) => {
+				const usersData = snapshot.docs.map((doc) => doc.data());
+				const specificUserData = usersData.filter((item) => {
+					return item.user_id === currentUser.uid;
+				})[0];
+				dispatch(userActions.setFavourites(specificUserData.item_ids));
+			});
+		} else console.log("There is no user signed in!"); // TODO: print more informative prompt
+	};
+	const addUserFavourite = async (id: number, prevItems:number[]) => {
+		const ref = doc(database, "user_favourites", currentUser!.uid);
+		await updateDoc(ref, {
+			item_ids:[...prevItems,id]
+		});
+		console.log("added!")
+	};
+	const removeUserFavourite = async(id:number, prevItems:number[]) =>{
+		const ref = doc(database, "user_favourites", currentUser!.uid);
+		const newArray = prevItems.filter(item => item !== id)
+		await updateDoc(ref, {
+			item_ids:newArray
+		});
+		console.log("removed!")
+	}
 	const signUpUser = async (email: string, password: string) => {
 		try {
 			const userCredential = await createUserWithEmailAndPassword(
@@ -65,6 +97,20 @@ const useFirebase = () => {
 				password
 			);
 			setCurrentUser(userCredential.user);
+
+			await setDoc(
+				doc(database, "user_favourites", userCredential.user.uid),
+				{
+					user_id: userCredential.user.uid,
+					item_ids: [],
+				}
+			);
+
+			await setDoc(doc(database, "user_cart", userCredential.user.uid), {
+				user_id: userCredential.user.uid,
+				item_ids: [],
+			});
+
 			return {
 				status: "success",
 				message: "Your account has been successfully created!",
@@ -96,7 +142,16 @@ const useFirebase = () => {
 		setCurrentUser(null);
 	};
 
-	return { getData, signUpUser, signOutUser, currentUser, signInUser};
+	return {
+		getShopItemsData,
+		signUpUser,
+		signOutUser,
+		currentUser,
+		signInUser,
+		getUserFavouritesData,
+		addUserFavourite,
+		removeUserFavourite
+	};
 };
 
 export default useFirebase;

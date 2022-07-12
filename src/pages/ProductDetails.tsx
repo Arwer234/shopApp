@@ -14,7 +14,7 @@ type Props = {};
 
 const ProductDetails = (props: Props) => {
 	const params = useParams();
-	const { getData } = useFirebase();
+	const { getShopItemsData } = useFirebase();
 
 	const items: tShopItem[] = useSelector(
 		(state: RootState) => state.data.shop_items
@@ -27,7 +27,7 @@ const ProductDetails = (props: Props) => {
 	})[0];
 	useEffect(() => {
 		if (!isDataLoaded) {
-			getData();
+			getShopItemsData();
 		}
 	}, []);
 

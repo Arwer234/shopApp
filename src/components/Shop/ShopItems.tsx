@@ -9,12 +9,22 @@ import ShopItem from "./ShopItem";
 import { RootState, uiActions } from "../../store/index";
 
 import loading from "../../imgs/loading.gif";
+import useFirebase from "../../hooks/useFirebase";
 
 type Props = {};
 
 const ShopItems = (props: Props) => {
+	const {currentUser, getUserFavouritesData, addUserFavourite, removeUserFavourite} = useFirebase()
+
+	const favouriteItemsIds = useSelector((state:RootState) => state.user.favourites)
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+
+	useEffect(()=>{
+		getUserFavouritesData()
+	},[currentUser])
+
 	const isDataLoaded = useSelector(
 		(state: RootState) => state.data.isDataLoaded
 	);
@@ -26,6 +36,14 @@ const ShopItems = (props: Props) => {
 		dispatch(uiActions.setSelectedItem(id));
 		navigate("/product-details/"+id);
 	};
+	const handleFavouriteClick = (id:number) =>{
+		if(!favouriteItemsIds.includes(id)){
+			addUserFavourite(id, favouriteItemsIds)
+		}
+		else{
+			removeUserFavourite(id,favouriteItemsIds)
+		}
+	}
 
 	return (
 		<section className={classes[`shop-items`]}>
@@ -38,6 +56,9 @@ const ShopItems = (props: Props) => {
 								onClick={handleItemClick}
 								{...item}
 								key={item.id}
+								isUserLoggedIn = {currentUser !== null}
+								isFavourite = {favouriteItemsIds.includes(item.id)}
+								onFavouriteClick = {handleFavouriteClick}
 							/>
 						);
 					})}

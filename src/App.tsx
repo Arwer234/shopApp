@@ -23,10 +23,12 @@ function App() {
 	const isDataLoaded = useSelector(
 		(state: RootState) => state.data.isDataLoaded
 	);
-	const { getData, currentUser, signOutUser } = useFirebase();
+	const { getShopItemsData, currentUser, signOutUser,getUserFavouritesData } = useFirebase();
 
 	useEffect(() => {
-		if (!isDataLoaded) getData();
+		if (!isDataLoaded) {
+			getShopItemsData();
+		}
 	}, []);
 
 	return (
