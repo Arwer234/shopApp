@@ -79,7 +79,6 @@ const useFirebase = () => {
 		await updateDoc(ref, {
 			item_ids:[...prevItems,id]
 		});
-		console.log("added!")
 	};
 	const removeUserFavourite = async(id:number, prevItems:number[]) =>{
 		const ref = doc(database, "user_favourites", currentUser!.uid);
@@ -87,7 +86,6 @@ const useFirebase = () => {
 		await updateDoc(ref, {
 			item_ids:newArray
 		});
-		console.log("removed!")
 	}
 	const signUpUser = async (email: string, password: string) => {
 		try {
@@ -106,7 +104,7 @@ const useFirebase = () => {
 				}
 			);
 
-			await setDoc(doc(database, "user_cart", userCredential.user.uid), {
+			await setDoc(doc(database, "user_carts", userCredential.user.uid), {
 				user_id: userCredential.user.uid,
 				item_ids: [],
 			});
