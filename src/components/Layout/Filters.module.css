@@ -11,9 +11,6 @@
 
     height:100%;
 }
-.filters h2{
-   
-}
 .filters-input{
     border:1px solid #61828A;
     border-radius: 10px;
@@ -65,3 +62,13 @@
 }
 .filters-filter-input{}
 .filters-input-invalid{}
+@media (max-width: 623px) {
+	.filters{
+        display:none;
+    }
+}
+@media (min-width: 624px) {
+	.filters{
+        display:flex;
+    }
+}

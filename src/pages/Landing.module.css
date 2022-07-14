@@ -40,3 +40,15 @@
 	height: 100%;
 	object-fit: cover;
 }
+
+@media (min-width: 624px) {
+	.shop-body__content{
+		flex-direction: row;
+	}
+}
+
+@media (max-width: 623px) {
+	.shop-body__content{
+		flex-direction: column;
+	}
+}
