@@ -14,17 +14,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 75%;
 }
 .auth-credentials{
     width:100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
 .auth-credentials input{
-    padding:0.7rem;
+    padding:0.75rem;
     outline: none;
     border:none;
     border-bottom:none;
@@ -43,7 +42,10 @@
     box-shadow: 1px 1px 8px -1px rgba(66, 68, 90, 1);
 }
 .input-module{
-    width:60%;
+    width:90%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 .big-button{
     background-color: #61828A;
@@ -52,8 +54,7 @@
     color: white;
     border: none;
     margin: 1rem;
-    font-size:1.2rem;
-    width:65%;
+    font-size:1.2rem
 }
 .big-button:hover{
     cursor: pointer;
@@ -61,4 +62,7 @@
 .input-validation-error{
     color:red;
     font-size:0.7rem;
+}
+.auth-form__label{
+    margin:0.25rem;
 }

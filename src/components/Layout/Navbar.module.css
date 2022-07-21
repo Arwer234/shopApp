@@ -13,12 +13,11 @@
 .navbar *{
     transition: 0.2s ease-out;
     color:white;
-    padding:1rem;
+    padding:0.6rem;
     text-decoration: none;
     background-color: none;
     color:white;
-    font-size: 2rem;
-    margin:0.5rem;
+    margin:0.25rem;
     border-radius: 2rem;
 }
 .navbar *:hover{

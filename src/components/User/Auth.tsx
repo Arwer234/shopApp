@@ -181,7 +181,7 @@ const Auth = (props: Props) => {
 			<form className={classes[`auth-form`]}>
 				<div className={classes[`input-module`]}>
 					<section className={classes[`auth-credentials`]}>
-						<label htmlFor="auth-email">Email</label>
+						<label className = {classes[`auth-form__label`]} htmlFor="auth-email">Email</label>
 						<input
 							onChange={emailChangeHandler}
 							onBlur={onEmailBlur}
@@ -202,7 +202,7 @@ const Auth = (props: Props) => {
 				</div>
 				<div className={classes[`input-module`]}>
 					<section className={classes[`auth-credentials`]}>
-						<label htmlFor="auth-password">Password</label>
+						<label className = {classes[`auth-form__label`]} htmlFor="auth-password">Password</label>
 						<input
 							onChange={passwordChangeHandler}
 							onBlur={onPasswordBlur}
@@ -224,7 +224,7 @@ const Auth = (props: Props) => {
 				{!isToSignIn && (
 					<div className={classes[`input-module`]}>
 						<section className={classes[`auth-credentials`]}>
-							<label htmlFor="auth-confirm-password">
+							<label className = {classes[`auth-form__label`]} htmlFor="auth-confirm-password">
 								Confirm password
 							</label>
 							<input
@@ -253,7 +253,7 @@ const Auth = (props: Props) => {
 					{isToSignIn ? "Login" : "Register"}
 				</button>
 				<p>
-					{isToSignIn ? "Not a member?" : "Already signed up?"}
+					<span>{isToSignIn ? "Not a member?" : "Already signed up?"}</span>
 					<span
 						className={classes[`sign-in`]}
 						onClick={handleSignInMode}

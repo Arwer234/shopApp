@@ -11,48 +11,21 @@ html{
   margin:0;
   position:relative;
   --swiper-theme-color: #61828A !important;
+  font-size: calc(15px + 0.390625vw);
 }
 h1{
-  font-size:4rem;
+  font-size:1.6rem;
 }
 h2{
-  font-size:3rem;
+  font-size:1.4rem;
 }
 h3{
-  font-size:2rem;
+  font-size:1.2rem;
 }
 p{
-  font-size:1.5rem;
+  font-size:1rem;
 }
 #root{
   height:100%;
 }
-@media (min-width: 858px) {
-  html {
-      font-size: 12px;
-  }
-}
 
-@media (min-width: 780px) {
-  html {
-      font-size: 11px;
-  }
-}
-
-@media (min-width: 702px) {
-  html {
-      font-size: 10px;
-  }
-}
-
-@media (min-width: 624px) {
-  html {
-      font-size: 9px;
-  }
-}
-
-@media (max-width: 623px) {
-  html {
-      font-size: 8px;
-  }
-}

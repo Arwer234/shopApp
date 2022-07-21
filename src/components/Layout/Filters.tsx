@@ -106,7 +106,7 @@ const Filters = (props: Props) => {
         </button>
         <button
           onClick={handleClearClick}
-          className={classes[`big-button-reverse`]}
+          className={classes[`big-button`].concat(` ${classes['big-button__reversed-color']}`)}
         >
           Clear
         </button>
